@@ -9,6 +9,8 @@ import { TaskService } from '../services/task.service';
 })
 export class HomePage {
 
+  type: string = "peding";
+
   constructor(public alertController: AlertController, 
     public taskService: TaskService,
     public toastController: ToastController) {}
