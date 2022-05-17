@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, PopoverController, ToastController } from '@ionic/angular';
+import { PopoverComponent } from '../popover/popover.component';
 import { TaskService } from '../services/task.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class HomePage {
 
   constructor(public alertController: AlertController, 
     public taskService: TaskService,
-    public toastController: ToastController) {}
+    public toastController: ToastController,
+    public popoverController: PopoverController) {}
 
   async presentAlertPromptAdd() {
     const alert = await this.alertController.create({
@@ -122,6 +124,18 @@ export class HomePage {
       duration: 2000
     });
     toast.present();
+  }
+
+  async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: PopoverComponent,
+      event: ev,
+      translucent: true
+    });
+    await popover.present();
+  
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 
 }
