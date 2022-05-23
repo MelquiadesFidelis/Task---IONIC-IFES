@@ -27,6 +27,8 @@
 
 </ion-segment>
 
+  
+
   <ion-list *ngIf="type == 'pending'">
     <ion-item-sliding *ngFor="let task of taskService.getTasks(); let i = index">
       <ion-item *ngIf="!task.done">
